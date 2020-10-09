@@ -29,6 +29,7 @@ class App extends React.Component {
       <React.Fragment>
         <input type="text" value={this.props.name} onChange={this.changeName}></input>
         <h1>Hello {this.props.name}</h1>
+        <h2>{ this.props.age }</h2>
         <MyComboBox />
       </React.Fragment>
     )
