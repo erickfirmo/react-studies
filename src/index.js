@@ -6,7 +6,7 @@ ReactDOM.render(
   <React.StrictMode>
     <App 
       name="Érick Firmo"
-      age="24"
+      age={24}
     />
   </React.StrictMode>,
   document.getElementById('root')
