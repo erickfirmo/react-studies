@@ -7,15 +7,15 @@ class Clock extends React.Component {
     }
 
     componentDidMount() {
-
+        console.log('Executando didMouth');
     }
 
     componentWillUnmouth() {
-
+        console.log('Executando willUnmouth');
     }
 
     componentDidUpdate() {
-
+        console.log('Executando didUpdate');
     }
 
     render() {
