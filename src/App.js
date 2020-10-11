@@ -23,7 +23,7 @@ function App (props) {
 
   return (
     <React.Fragment>
-      <input type="text" value={props.name} onChange={changeName}></input>
+      <input className="text-center" type="text" value={props.name} onChange={changeName}></input>
       <h1>Hello {props.name}</h1>
       <MyComboBox/>
     </React.Fragment>
