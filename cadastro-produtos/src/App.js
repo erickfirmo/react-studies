@@ -4,10 +4,12 @@ import Home from './views/home'
 
 function App() {
   return (
+    <>
     <div className="container">
       <Navbar />
       <Home />
     </div>
+    </>
   );
 }
 
