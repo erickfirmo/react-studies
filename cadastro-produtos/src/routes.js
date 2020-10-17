@@ -9,7 +9,7 @@ export default () => {
     return (
         <HashRouter>
             <Switch>
-                <Route path="/cadastro-produtos" component={CreateProduct} />
+                <Route exact path="/cadastro-produtos" component={CreateProduct} />
             </Switch>
         </HashRouter>
     )
