@@ -15,6 +15,7 @@ class CreateProduct extends React.Component {
         description: '',
         price: 0,
         provider: '',
+        success: false
     }
 
     onChange = (event) => {
@@ -32,7 +33,10 @@ class CreateProduct extends React.Component {
             provider: this.state.provider,
         }
 
-        this.service.save()
+
+        this.service.save(product)
+        this.clearFields()
+        this.setState({ success: true })
     }
 
     clearFields = () => {
@@ -42,6 +46,7 @@ class CreateProduct extends React.Component {
             description: '',
             price: 0,
             provider: '',
+            success: false
         })
     }
 
@@ -52,6 +57,19 @@ class CreateProduct extends React.Component {
                     Cadastro de Produto
                 </div>
                 <div className="card-body">
+
+                    { this.state.success ?
+                        (
+                            <div class="alert alert-dismissible alert-success">
+                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                <strong>Sucesso!</strong> Produto cadastrado com sucesso!
+                                <a href="#" class="alert-link"></a>
+                            </div>
+                        ) : (
+                            <></>
+                        )
+                    }
+
                     <div className="row">
                         <div className="col-md-6">
                             <div className="form-group">
