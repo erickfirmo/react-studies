@@ -1,6 +1,6 @@
 import React from 'react'
 
-import ProductService from '../../app/ProductService';
+import ProductService from '../../app/ProductService'
 
 class CreateProduct extends React.Component {
 
@@ -15,7 +15,8 @@ class CreateProduct extends React.Component {
         description: '',
         price: 0,
         provider: '',
-        success: false
+        success: false,
+        errors: []
     }
 
     onChange = (event) => {
@@ -33,10 +34,16 @@ class CreateProduct extends React.Component {
             provider: this.state.provider,
         }
 
+        try {
+            this.service.save(product)
+            this.clearFields()
+            this.setState({ success: true })
 
-        this.service.save(product)
-        this.clearFields()
-        this.setState({ success: true })
+        } catch(e) {
+            const errors = e.errors
+            this.setState({ errors: errors })
+
+        }
     }
 
     clearFields = () => {
@@ -46,7 +53,8 @@ class CreateProduct extends React.Component {
             description: '',
             price: 0,
             provider: '',
-            success: false
+            success: false,
+            errors: []
         })
     }
 
@@ -58,16 +66,26 @@ class CreateProduct extends React.Component {
                 </div>
                 <div className="card-body">
 
-                    { this.state.success ?
-                        (
-                            <div class="alert alert-dismissible alert-success">
-                                <button type="button" class="close" data-dismiss="alert">&times;</button>
-                                <strong>Sucesso!</strong> Produto cadastrado com sucesso!
-                                <a href="#" class="alert-link"></a>
-                            </div>
-                        ) : (
-                            <></>
-                        )
+                    { this.state.success &&
+                    
+                        <div className="alert alert-dismissible alert-success">
+                            <button type="button" className="close" data-dismiss="alert">&times;</button>
+                            <strong>Sucesso!</strong> Produto cadastrado com sucesso!
+                            <a href="#" className="alert-link"></a>
+                        </div>
+                    }
+
+                    { this.state.errors.length > 0 &&
+
+                        this.state.errors.map( (message, i) => {
+                            return (
+                                <div className="alert alert-dismissible alert-danger" key={i}>
+                                    <button type="button" className="close" data-dismiss="alert">&times;</button>
+                                    <strong>Erro!</strong> {message}
+                                    <a href="#" className="alert-link"></a>
+                                </div>
+                            )
+                        })
                     }
 
                     <div className="row">
